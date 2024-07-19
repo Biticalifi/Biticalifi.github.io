@@ -1,0 +1,3 @@
+Spawn,0,0
+Biti,10,10
+NotBiti,20,20

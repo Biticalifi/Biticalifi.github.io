@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hermemecraft Geoguessr</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+    <link rel="stylesheet" href="map.css">
+</head>
+<body>
+    <img id="hiddenImage" src="panorama/bitibase.png" style="display:none;">
+    <div>   
+        <h1>Placeholder Title</h1>
+        <button onclick="startGame()">Start Game</button>
+        <button onclick="submitGuess()">Submit Guess</button>
+        <button onclick="lowQ()">LowQ</button>
+        <button onclick="highQ()">HighQ</button>
+        <h3 id="score">Score: </h5>
+        <h3 id="timer">Timer: </h3>
+    </div>
+    <div id="map-container">
+        <div id="map-anchor">
+            <div id="map-wrapper">
+                <img id="map" src="sprites/map-high.png" alt="Map">
+            </div>
+        </div>
+        <div id="button-container">
+            <div id="button-wrapper">
+                <button class="button" onclick="zoomIn()">+</button>
+                <button class="button" onclick="zoomOut()">-</button>
+            </div>
+        </div>
+        <div id="coords-container">
+            <div id="coords-wrapper">
+                <p id="mouseX" class="button">X: 0</p>
+                <p id="mouseZ" class="button">Z: 0</p>
+                <p class="button">Y: 320</p>
+            </div>
+        </div>
+        <div id="marker-container">
+            <div id="marker-wrapper">
+                <p id="markerX" class="button">X: 0</p>
+                <p id="markerZ" class="button">Z: 0</p>
+                <p class="button">Y: 320</p>
+            </div>
+        </div>
+    </div>
+    <div id="panorama-container">
+    </div>
+    <script src="initPannellum.js"></script>
+    <script src="map.js"></script>
+</body>
+</html>

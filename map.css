@@ -1,0 +1,149 @@
+body {
+    margin: 0;
+    display: flex;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+#map-container {
+    width: 60vw;
+    height: 50vh;
+    overflow: hidden;
+    border: 2px solid #000;
+    border-radius: 10px;
+    position: absolute;
+    bottom: 5px; /* Adjust as needed */
+    right: 5px; /* Adjust as needed */
+    background-color: black;
+}
+
+#map-anchor {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: transform 0.2s ease; /* Smooth transition for scaling */
+}
+
+#map-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#map {
+    display: block;
+    max-width: none; /* Override default max-width */
+    cursor: grab;
+    user-select: none; /* Prevents text selection */
+    -webkit-user-drag: none; /* Disables dragging in webkit-based browsers */
+    -moz-user-select: none; /* Prevents text selection in Firefox */
+    image-rendering: pixelated;
+}
+
+#button-container {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+#button-wrapper {
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    background-color: #ffffff;
+}
+
+#button-wrapper button {
+    width: 25px;
+    height: 25px;
+    background-color: #ffffff;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    box-sizing: border-box;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #e0e0e0;
+}
+
+#coords-container {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
+
+#coords-wrapper {
+    display: flex;
+    flex-direction: row;
+    border-radius: 5px;
+    background-color: #ffffff;
+    min-width: 180px;
+    height: 30px;
+    gap: 25px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+    flex-grow: 1;
+    white-space: nowrap;
+}
+
+#coords-wrapper p {
+    background-color: #ffffff;
+    font-family: "Helvetica", Arial, sans-serif;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    box-sizing: border-box;
+}
+
+#marker-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+#marker-wrapper {
+    display: flex;
+    flex-direction: row;
+    border-radius: 5px;
+    background-color: #ffffff;
+    min-width: 180px;
+    height: 30px;
+    gap: 25px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+    flex-grow: 1;
+    white-space: nowrap;
+}
+
+#marker-wrapper p {
+    background-color: #ffffff;
+    font-family: "Helvetica", Arial, sans-serif;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    box-sizing: border-box;
+}
+
+#panorama-container {
+    width: 35vw;
+    height: 50vh;
+    overflow: hidden;
+    border: 2px solid #000;
+    border-radius: 10px;
+    position: absolute;
+    bottom: 5px; /* Adjust as needed */
+    left: 5px; /* Adjust as needed */
+}
