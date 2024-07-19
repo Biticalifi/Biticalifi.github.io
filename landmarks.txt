@@ -1,0 +1,6 @@
+Landmark1 321 -4500 bitibase
+Landmark2 30 20 sdcube
+Landmark3 321 -4500 bitibase
+Landmark4 40 40 sdcube
+Landmark5 50 50 sdtower
+Landmark6 60 60 sdtower

@@ -35,7 +35,25 @@ let landmarkPhoto = 'none'
 let landmarksLoaded = [];
 
 let landmarksData = '';
-loadLandData();
+loadLandmarksData();
+function loadLandmarksData(callback) {
+    fetch('landmarks.txt')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
+        .then(data => {
+            landmarksData = data;
+            if (callback) {
+                callback(); // Call the callback function after data is loaded
+            }
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+        });
+}
 
 let timerElement = document.getElementById('timer');
 let timerInterval;
@@ -159,7 +177,7 @@ function handleClick(e) {
     // Create a new image element
     if (currentMarkerIndex > markers.length){
         newMarker = document.createElement('img');
-        newMarker.src = 'sprites/' + markersRef[currentMarkerIndex - 1] + '.png'; // Replace with your image path
+        newMarker.src = 'files/sprites/' + markersRef[currentMarkerIndex - 1] + '.png'; // Replace with your image path
         newMarker.style.position = 'absolute';
         newMarker.style.zIndex = '100'; // Ensure it's above the map
         newMarker.style.transition = 'transform 0.2s ease';
@@ -289,7 +307,7 @@ function updateScale() {
 }
 
 function lowQ(){
-    image.src = `sprites/map-low.png`;
+    image.src = `files/maps/map-low.png`;
     offsetX /= 2;
     offsetY /= 2;
     updateTransform();
@@ -318,7 +336,7 @@ function lowQ(){
 }
 
 function highQ(){
-    image.src = `sprites/map-high.png`;
+    image.src = `files/maps/map-high.png`;
     offsetX *= 2;
     offsetY *= 2;
     updateTransform();
@@ -347,21 +365,25 @@ function highQ(){
 }
 
 function loadLandmark() {
+    if (landmarksData === '') {
+        loadLandmarksData();
+        console.error('Landmarks data is not loaded.');
+        return;
+    }
     const lines = landmarksData.trim().split('\n');
 
     // Filter out already loaded landmarks
     const availableLines = lines.filter(line => !landmarksLoaded.includes(line));
 
     const randomLine = availableLines[Math.floor(Math.random() * availableLines.length)];
-    const [name, x, z] = randomLine.split(' ');
+    const [name, x, z, path] = randomLine.split(' ');
 
     landmarksLoaded.push(randomLine);
 
     landmark = name;
     targetX = parseFloat(x);
     targetZ = parseFloat(z);
-    const hiddenImage = document.getElementById('hiddenImage');
-    landmarkPhoto = hiddenImage.src;
+    landmarkPhoto = "files/panorama/" + path + ".png";
     loadPhoto();
     console.log(`Landmark: ${landmark}, X: ${targetX}, Z: ${targetZ}`);
 }
@@ -383,7 +405,7 @@ function submitGuess(){
 
 function createLandmarkMarker(){
     newMarker = document.createElement('img');
-    newMarker.src = 'sprites/' + markersRef[currentMarkerIndex - 1] + '.png'; // Replace with your image path
+    newMarker.src = 'files/sprites/' + markersRef[currentMarkerIndex - 1] + '.png'; // Replace with your image path
     newMarker.style.position = 'absolute';
     newMarker.style.zIndex = '100'; // Ensure it's above the map
     newMarker.style.transition = 'transform 0.2s ease';
@@ -433,14 +455,3 @@ function drawLineInSVG(x1, y1, x2, y2, color = 'red', width = 4) {
 }
 
 updateTransform();
-
-function loadLandData(){
-    landmarksData = `
-Landmarkname 10 10
-Landmarkname2 20 20
-Landmarkname3 30 30
-Landmarkname4 40 40
-Landmarkname5 50 50
-Landmarkname6 60 60
-`;
-}
